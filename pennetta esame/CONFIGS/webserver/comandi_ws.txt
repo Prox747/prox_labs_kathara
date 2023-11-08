@@ -1,0 +1,9 @@
+Una serie di comandi WebServer utili con descrizione
+
+1) systemctl start apache2 --- fa partire il web server apache 2 sul router
+
+2) links <httpLink> --- fa partire il browser links dal router e richiede la pagina HTML definita nel parametro
+
+2) tail -f /var/log/apache2/access.log --- sul web server, ti permette di vedere gli accessi al web server (richeste, etc...)
+
+3) tail -f /var/log/apache2/error.log --- sul web server, ti permette di vedere gli errori del web server, utile per il debug
