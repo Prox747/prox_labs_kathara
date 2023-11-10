@@ -1,1 +1,23 @@
 Una serie di comandi OSPF utili con descrizione
+
+PER FARE QUESTI COMANDI ENTRA PRIMA NELLA VIRTUAL SHELL -> vtysh
+
+- il router id è l'IP dell'interfaccia più alta di quel router
+- il designated router di una LAN è l'IP dell'interfaccia che si collega 
+    alla LAN del router con router-id più alto (connesso alla LAN)
+    Se vuoi vederlo puoi fare su un router attaccato alla LAN -> show ip ospf database router -> e trovare
+    la LAN cercando un IP di quella LAN, e poi sopra c'è scritto il designated router (Link ID)
+    router di quella LAN
+    ESEMPIO:
+     Link connected to: a Transit Network
+      (Link ID) Designated Router address: 100.0.3.2 <------ QUESTO è DR
+      (Link Data) Router Interface address: 100.0.3.1 <------ un IP della LAN
+       Number of TOS metrics: 0
+       TOS 0 Metric: 10
+
+- se ti chiede di vedere rotte -> show ip route -> ogni riga è una rotta
+    ESEMPIO:
+    O>* 0.0.0.0/0 [110/11] via 100.20.1.20, eth0, weight 1, 00:18:19
+      *                    via 100.20.2.20, eth1, weight 1, 00:18:19
+    Queste sono DUE 0/0 non una!
+
