@@ -7,4 +7,7 @@ Comandi principali:
 
 show (mostra le informazioni sul sistema in esecuzione)
 
-show ip route (per ispezionare la routing table di frr, gli elementi marcati con '>' sono iniettati nella tabella di routing del kernel)
+show ip route (per ispezionare la routing table di frr, gli elementi marcati con '>' 
+               sono iniettati nella tabella di routing del kernel)
+
+show running-config (per ispezionare la configurazione corrente)
