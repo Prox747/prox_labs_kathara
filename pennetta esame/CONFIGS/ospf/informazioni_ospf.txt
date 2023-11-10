@@ -44,3 +44,11 @@ Per ogni rete, una delle interfacce collegata a questa rete viene eletta come "d
   la topologia della rete nel suo LSDB (Link State Database) e ogni router è identificato con
   il suo ID router univoco; se si hanno ID router duplicati, si avranno problemi di raggiungibilità.
 _____________________________________________
+
+
+__________Costo OSPF____________
+Il costo OSPF è una metrica utilizzata dall'algoritmo di routing OSPF per calcolare il percorso migliore
+tra due dispositivi abilitati OSPF.
+Ad ogni interfaccia è assegnato un costo OSPF, il default è 10, il costo è 'in uscita' dall'interfaccia.
+Il costo di un percorso viene determinato sommando i costi dei singoli collegamenti che lo compongono.
+_____________________________________________
