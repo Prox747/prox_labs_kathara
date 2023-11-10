@@ -1,1 +1,7 @@
-Una serie di comandi RIP utili con descrizione
+Una serie di comandi RIP utili con descrizione.
+
+ip route [per esaminare la tabella di routing del kernel]
+
+
+dentro vtysh:
+show ip rip [per ispezionare la tabella di routing di rip]

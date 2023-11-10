@@ -1,0 +1,33 @@
+
+__________integrated-vtysh-config___________
+In 'router_name\etc\frr' è possibile provare vtysh.conf all'interno ci sarà scritto:
+
+service integrated-vtysh-config
+
+con questo comando il daemon avrà un solo file di configurazione (frr.conf)
+scrivendo invece:
+
+no service integrated-vtysh-config
+
+ci sarà un file di configurazione per ogni daemon (sconsigliato)
+_____________________________________________
+
+
+__________systemctl start frr________________
+Nel file 'router_name.startup è necessario mettere:
+
+systemctl start frr
+
+per far startare automaticamente frr
+(il daemon principale e tutti i protocolli di routing sono startati automaticamente con frr)
+_____________________________________________
+
+
+
+__________frr.conf___________________________
+router rip [per parlare rip il alcune, o tutte, le interfacce]
+
+redistribute connected (redistribuisce ai vicini che parlano rip informazioni sulle rotte connesse direttamente)
+
+network <networkIP/MASK> (Manda un pacchetto multicast rip alle interfacce che si trovano sulla rete indicata)
+_____________________________________________
