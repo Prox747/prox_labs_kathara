@@ -1,1 +1,10 @@
 Una serie di comandi generali utili con le loro descrizioni (tipo di vtysh)
+
+vtysh (shell per interagire con frr)
+
+dentro vtysh è possibile premere '?' per avere una lista di tutti i comandi disponibili
+Comandi principali:
+
+show (mostra le informazioni sul sistema in esecuzione)
+
+show ip route (per ispezionare la routing table di frr, gli elementi marcati con '>' sono iniettati nella tabella di routing del kernel)
