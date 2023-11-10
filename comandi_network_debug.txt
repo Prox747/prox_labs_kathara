@@ -1,0 +1,13 @@
+Comandi utili per il debug delle reti.
+
+ping <ip_address>           [Utilizzato per verificare se il sistema è in rete o meno e invia pacchetti ECHO_REQUEST
+                            di Internet Control Message Protocol (ICMP) agli host della rete.]
+
+
+traceroute <ip_address>     [Stampa i pacchetti di percorso che sono stati presi dall'host di rete. traceroute utilizza
+                            il campo "time to live" del protocollo Internet e genera una risposta ICMP TIME_EXCEEDED.
+                            Questa risposta viene generata da ogni gateway che include il percorso verso uno degli host.
+                            Si avrà quindi una lista dei router attraversati.]
+
+
+tcpdump -tenni eth<num> -v  [Serve per "sniffare" i pacchetti in arrivo all'interfaccia <num> (es. eth0)]                    
