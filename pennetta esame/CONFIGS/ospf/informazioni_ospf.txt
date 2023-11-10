@@ -1,0 +1,46 @@
+Informazioni per il protocollo OSPF (Open Shortest Path First)
+
+__________Tipi di Area________________
+Una rete OSPF è divisa in aree. Esse sono gruppi logici non sovrapposti di router.
+
+- Area Backbone
+  L'area backbone (o area zero) rappresenta la "spina dorsale" di una rete OSPF.
+  Tutte le altre aree sono collegate ad essa e il routing inter-area passa tramite un router di questa rete.
+
+- Area Stub
+  L'area stub permette di ridurre la dimensione del database OSPF e della tabella di routing.
+  Questa area non accetta informazioni riguardo le rotte che sono esterne rispetto all'AS.
+_____________________________________________
+
+
+__________Tipi di router___________
+OSPF definisce vari tipi di router (sono definizioni logiche).
+
+- Backbone router (BR)
+  Un backbone router (BR) è un router con un'interfaccia verso l'area backbone.
+
+- Area Border Router (ABR)
+  Un'Area Border Router (ABR) è un router che connette una o più aree OSPF all'area di backbone.
+  Fa parte di tutte le aree alle quali è connesso.
+  Un ABR mantiene in memoria copie multiple del database link-state, uno per ciascuna area alla quale appartiene.
+
+- Internal Router
+  Un router viene detto interno (IR) se ha solo adiacenze OSPF con router nella stessa area.
+_____________________________________________
+
+
+__________Designated router___________
+Per ogni rete, una delle interfacce collegata a questa rete viene eletta come "designated" (dr).
+
+- Il router che manda l' "hello packet" con priorità più alta viene eletto.
+        - La priorità è un valore che viene assegnato (tra 0 e 255) dove il default è 1 e
+          se priority=0 allora non verrà mai eletto come dr.
+        - A parità di priorità vince il router con il router-id* più alto.
+- Un DR di backup viene subito eletto per recuperare in caso di fallimenti o guasti.
+- Un DR viene cambiato poco frequentemente poichè cambiarlo implica una modifica della topologia
+  della rete nel modello OSPF
+
+* Ogni router OSPF seleziona un router-id (RID) che deve essere unico nella rete. OSPF memorizza
+  la topologia della rete nel suo LSDB (Link State Database) e ogni router è identificato con
+  il suo ID router univoco; se si hanno ID router duplicati, si avranno problemi di raggiungibilità.
+_____________________________________________
