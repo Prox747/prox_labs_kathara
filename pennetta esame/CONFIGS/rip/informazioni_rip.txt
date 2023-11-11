@@ -25,7 +25,7 @@ _____________________________________________
 
 
 __________frr.conf___________________________
-router rip [per parlare rip il alcune, o tutte, le interfacce]
+router rip [per parlare rip in alcune, o tutte, le interfacce]
 
 redistribute connected (redistribuisce ai vicini che parlano rip informazioni sulle rotte connesse direttamente)
 
