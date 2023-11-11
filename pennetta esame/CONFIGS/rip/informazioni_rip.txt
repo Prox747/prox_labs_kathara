@@ -1,6 +1,6 @@
 
 __________integrated-vtysh-config___________
-In 'router_name\etc\frr' è possibile provare vtysh.conf all'interno ci sarà scritto:
+In 'router_name\etc\frr' è possibile trovare vtysh.conf all'interno ci sarà scritto:
 
 service integrated-vtysh-config
 
