@@ -1,13 +1,25 @@
 Una serie di comandi generali utili con le loro descrizioni (tipo di vtysh)
 
-vtysh (shell per interagire con frr)
+vtysh                   [shell per interagire con frr]
 
-dentro vtysh è possibile premere '?' per avere una lista di tutti i comandi disponibili
+Dentro vtysh è possibile premere '?' per avere una lista di tutti i comandi disponibili
 Comandi principali:
 
-show (mostra le informazioni sul sistema in esecuzione)
 
-show ip route (per ispezionare la routing table di frr, gli elementi marcati con '>' 
-               sono iniettati nella tabella di routing del kernel)
+show                    [mostra le informazioni sul sistema in esecuzione]
 
-show running-config (per ispezionare la configurazione corrente)
+show ip route           [per ispezionare la routing table di frr, gli elementi marcati con '>' 
+                        sono iniettati nella tabella di routing del kernel.
+                        Se chiede di vedere le rotte 0/0 (default route) che possono essere trovate nella tabella 
+                        di routing di zebra:
+                        ESEMPIO:
+                        O>* 0.0.0.0/0 [110/11] via 100.20.1.20, eth0, weight 1, 00:18:19
+                          *                    via 100.20.2.20, eth1, weight 1, 00:18:19
+
+                        Queste sono DUE 0/0 non una!
+                        ]
+
+show running-config     [per ispezionare la configurazione corrente]
+
+
+
