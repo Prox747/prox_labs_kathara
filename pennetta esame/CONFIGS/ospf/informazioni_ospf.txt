@@ -43,6 +43,7 @@ Per ogni rete, una delle interfacce collegata a questa rete viene eletta come "d
 * Ogni router OSPF seleziona un router-id (RID) che deve essere unico nella rete. OSPF memorizza
   la topologia della rete nel suo LSDB (Link State Database) e ogni router è identificato con
   il suo ID router univoco; se si hanno ID router duplicati, si avranno problemi di raggiungibilità.
+  Il router ID è sempre l'indirizzo ip più alto di quel router.
 _____________________________________________
 
 

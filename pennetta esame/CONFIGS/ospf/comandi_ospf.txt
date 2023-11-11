@@ -2,22 +2,47 @@ Una serie di comandi OSPF utili con descrizione
 
 PER FARE QUESTI COMANDI ENTRA PRIMA NELLA VIRTUAL SHELL -> vtysh
 
-- il router id è l'IP dell'interfaccia più alta di quel router
-- il designated router di una LAN è l'IP dell'interfaccia che si collega 
-    alla LAN del router con router-id più alto (connesso alla LAN)
-    Se vuoi vederlo puoi fare su un router attaccato alla LAN -> show ip ospf database router -> e trovare
-    la LAN cercando un IP di quella LAN, e poi sopra c'è scritto il designated router (Link ID)
-    router di quella LAN
-    ESEMPIO:
-     Link connected to: a Transit Network
-      (Link ID) Designated Router address: 100.0.3.2 <------ QUESTO è DR
-      (Link Data) Router Interface address: 100.0.3.1 <------ un IP della LAN
-       Number of TOS metrics: 0
-       TOS 0 Metric: 10
 
-- se ti chiede di vedere rotte -> show ip route -> ogni riga è una rotta
+show ip ospf route       [Visualizza le informazioni sulla tabella di routing OSPF.]
+
+show ip ospf interface   [Visualizza informazioni sulle interfacce del router.]
+
+show ip ospf neighbor    [Visualizza i router adiacenti OSPF.
+                          Il campo Neighbor ID mostra l'id del router adiacente, identificato dal router-id (l'indirizzo IP più alto presente).
+                          Il campo Address indica l'indirizzo IP dell'interfaccia a cui il router adiacente è connesso direttamente.
+                          Il campo Interface indica l'interfaccia su cui il router adiacente OSPF ha formato l'adiacenza.
+                          (Attenzione: potrebbero esserci dei campi con lo stesso Neighbor ID, fanno riferimento a diversi stati
+                          del router, es. backup/DR, contano come un solo vicino)]
+
+show ip ospf database    [Visualizza il database OSPF (LSDB), è uguale per ogni router.
+                          All'inizio c'è "OSPF Router with ID (<address>)", <address> è il router-id.
+                          Con "show ip ospf database ?" è possibile vedere filtri per vedere porzioni del LSDB (es, router, network)]
+
+show ip ospf database router [Visualizza il LSDB per i router della rete.
+                              da: (Link ID) Designated Router address: <address>
+                              è possibile trovare i designated router per una LAN, (basta vedere un ip corrispondente alla LAN
+                              di interesse che sia nel campo Designated Router Address).
+                              ESEMPIO:
+                               Link connected to: a Transit Network
+                              (Link ID) Designated Router address: 100.0.3.2  <---- DR per la LAN 100.0.3.0/24
+                              (Link Data) Router Interface address: 100.0.3.1 <---- un IP nella LAN 100.0.3.0/24
+                                Number of TOS metrics: 0
+                                TOS 0 Metric: 80
+
+                              Link connected to: a Transit Network
+                              (Link ID) Designated Router address: 100.0.1.2  <---- DR per la LAN 100.0.1.0/24
+                              (Link Data) Router Interface address: 100.0.1.1
+                                Number of TOS metrics: 0
+                                TOS 0 Metric: 10
+                              ]
+
+
+Se chiede di vedere le rotte 0/0 (default route) che possono essere trovate nella tabella di routing di zebra:
+show ip route    [vedi comandi_vtysh.txt]
+
     ESEMPIO:
     O>* 0.0.0.0/0 [110/11] via 100.20.1.20, eth0, weight 1, 00:18:19
       *                    via 100.20.2.20, eth1, weight 1, 00:18:19
+      
     Queste sono DUE 0/0 non una!
 
