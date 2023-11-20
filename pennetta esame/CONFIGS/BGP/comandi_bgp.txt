@@ -25,8 +25,9 @@ Una serie di comandi BGP utili con descrizione
     ip prefix-list <PREFIX-NAME> <permit/deny> any ##############(IL DENY ANY E' IMPLICITO PER OGNI PREFIX)##############
 
 -per creare delle route-map:
+    ### se metti deny ignora la route-map (infatti alla fine c'è sempre
+    ### un deny tutto implicito che leva le reti non specificate)
     route-map <ROUTE-MAP-NAME> <permit/deny> <priority>
         match <condition> (es. ip address <prefix-list>)
         set <action> (tipo set metric <NUM> o set local-preference <NUM>)
-    
     
