@@ -1,0 +1,32 @@
+Una serie di comandi BGP utili con descrizione
+
+- Va messo in ogni router BGP:
+    router bgp <AS-NUMBER>
+    neighbor <RouterIP> remote-as <AS-NUMBER-NEIGHBOR>
+        per ogni neighbor bgp puoi aggiungiere una route-map in e una out lo stesso vale per prefix-list filtering
+        per farlo scrivi (CON ANCHE NEIGHBOR DI NUOVO):
+
+                              |
+        per prefix-filtering: V
+        _________________________________________________________
+        | neighbor <RouterIP> prefix-list <PREFIX-NAME> <out/in> |
+        |________________________________________________________|
+        
+                       |
+        per route-map: V
+        __________________________________________________________
+        | neighbor <RouterIP> route-map <ROUTE-MAP-NAME> <out/in> |
+        |_________________________________________________________|
+
+        QUESTO VA AGGIUNTO SOTTO AL NEIGHBOR
+
+- per creare dei prefissi:
+    ip prefix-list <PREFIX-NAME> <permit/deny> <NetworkIP/MASK>
+    ip prefix-list <PREFIX-NAME> <permit/deny> any ##############(IL DENY ANY E' IMPLICITO PER OGNI PREFIX)##############
+
+-per creare delle route-map:
+    route-map <ROUTE-MAP-NAME> <permit/deny> <priority>
+        match <condition> (es. ip address <prefix-list>)
+        set <action> (tipo set metric <NUM> o set local-preference <NUM>)
+    
+    
