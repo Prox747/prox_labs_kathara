@@ -1,5 +1,5 @@
 # se vuoi rotte statiche
-## ip route add <NetworkIP/MASK> via <RouterIP/MASK> dev eth<num>
+## ip route add <NetworkIP/MASK> via <RouterIP> dev eth<num>
 
 ip a add 150.150.150.33/24 dev eth0
 ip a add 100.100.100.33/24 dev eth1
