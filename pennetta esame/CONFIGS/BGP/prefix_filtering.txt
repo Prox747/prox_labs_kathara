@@ -1,0 +1,14 @@
+Prefix Filtering Commands (Vanno dentro frr.conf del router BGP):
+
+!!! Dentro configurazione router bgp (aggiungere dopo le network)
+!!! Per aggiungere una prefix-list in/out al neighbor
+!!! Se viene passato un p-list-name non definito -> di default verrà considerato come deny any
+neighbor <neighbor-ip> prefix-list <p-list-name> in
+neighbor <neighbor-ip> prefix-list <p-list-name> out
+
+
+!!! Attenzione NON sono comandi BGP, inserirli esce dalla configurazione router bgp (metterli quindi alla fine della config bgp)
+!!! è importante l'ordine di inserimento (di default c'è un deny any alla fine)
+!!! La network/mask passata alla prefix-list deve essere un "exact-match" della network dell'annuncio bgp che si vuole filtrare
+ip prefix-list <p-list-name> permit <network/mask>
+ip prefix-list <p-list-name> deny <network/mask>

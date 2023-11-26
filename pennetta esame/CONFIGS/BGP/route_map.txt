@@ -1,0 +1,30 @@
+Route Map Commands (Vanno dentro frr.conf del router BGP):
+
+!!! Dentro configurazione router bgp (aggiungere dopo le network)
+neighbor <neighbor-ip> route-map <route-map-name> in
+neighbor <neighbor-ip> route-map <route-map-name> out
+
+
+!!! Le dichiarazioni route-map vengono di default chiuse con un deny implicito, che scarta tutto ciò che non fa match
+!!! è importante mettere un altra route-map con lo stesso nome (e seq-number >=) senza match e set se non si vuole filtrare tutto.
+!!! Se si fa riferimneto ad un access-list non definita risulta un filtraggio di tutto.
+route-map <route-map-name> permit <seq-number>
+    match <announce-property>
+    set <attribute-settings>
+route-map <route-map-name> permit <seq-number>     
+
+!!! match announce property:
+    match ip address <access-list-name> 
+
+!!! RICORDA che cambiare local-preference ad un router bgp influenza il calcolo del percorso di tutti i router
+!!! set attribute settings: 
+    set local-preference <num>      (default: 100)
+    set metric <num>                
+
+
+!!! Di default le access-list fanno match con network più specifici (mask più grandi)
+!!! esempio: access-list List permit 193.100.0.0/16
+!!!          fa match anche con 193.100.5.0/24 , 193.100.192.8/30 ...
+!!! per cambiare questo comportamento è possibile aggiungere 'exact-match' alla fine del comando
+access-list <access-list-name> permit <network/mask> [exact-match]
+access-list <access-list-name> deny <network/mask> [exact-match]
