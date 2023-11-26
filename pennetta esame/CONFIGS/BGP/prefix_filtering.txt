@@ -3,6 +3,9 @@ Prefix Filtering Commands (Vanno dentro frr.conf del router BGP):
 !!! Dentro configurazione router bgp (aggiungere dopo le network)
 !!! Per aggiungere una prefix-list in|out al neighbor
 !!! Se viene passato un p-list-name non definito -> di default verrà considerato come deny any
+!!! Ogni neighbor può avere al massimo una prefix-list per in o out
+!!! Cioè due prefix-list con nomi diversi, una in e una out
+!!! (non puoi mettere "in" due prefix-list diverse sullo stesso neighbor)
 neighbor <neighbor-ip> prefix-list <p-list-name> in
 neighbor <neighbor-ip> prefix-list <p-list-name> out
 

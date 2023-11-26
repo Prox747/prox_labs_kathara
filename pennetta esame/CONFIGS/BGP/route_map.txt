@@ -1,6 +1,9 @@
 Route Map Commands (Vanno dentro frr.conf del router BGP):
 
 !!! Dentro configurazione router bgp (aggiungere dopo le network)
+!!! Ogni neighbor può avere al massimo una route-map per in o out
+!!! Cioè due route-map con nomi diversi, una in e una out
+!!! (non puoi mettere "in" due route-maps diverse sullo stesso neighbor)
 neighbor <neighbor-ip> route-map <route-map-name> in
 neighbor <neighbor-ip> route-map <route-map-name> out
 
