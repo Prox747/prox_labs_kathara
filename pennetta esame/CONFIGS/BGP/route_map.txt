@@ -5,21 +5,23 @@ neighbor <neighbor-ip> route-map <route-map-name> in
 neighbor <neighbor-ip> route-map <route-map-name> out
 
 
-!!! Le dichiarazioni route-map vengono di default chiuse con un deny implicito, che scarta tutto ciò che non fa match
-!!! è importante mettere un altra route-map con lo stesso nome (e seq-number >=) senza match e set se non si vuole filtrare tutto.
+!!! Le dichiarazioni route-map vengono di default chiuse con un deny implicito, che scarta tutto ciò che non fa match prima
+!!! è importante mettere un altra route-map con lo stesso nome (e seq-number >) senza match e set se non si vuole filtrare tutto.
 !!! Se si fa riferimneto ad un access-list non definita risulta un filtraggio di tutto.
-route-map <route-map-name> permit <seq-number>
+route-map <route-map-name> <permit|deny> <seq-number>
     match <announce-property>
     set <attribute-settings>
-route-map <route-map-name> permit <seq-number>     
+route-map <route-map-name> <permit|deny> <seq-number>     
 
 !!! match announce property:
     match ip address <access-list-name> 
+    match community <community-list-name>
 
 !!! RICORDA che cambiare local-preference ad un router bgp influenza il calcolo del percorso di tutti i router
 !!! set attribute settings: 
     set local-preference <num>      (default: 100)
-    set metric <num>                
+    set metric <num>  
+    set community <num:num>              
 
 
 !!! Di default le access-list fanno match con network più specifici (mask più grandi)
@@ -28,3 +30,6 @@ route-map <route-map-name> permit <seq-number>
 !!! per cambiare questo comportamento è possibile aggiungere 'exact-match' alla fine del comando
 access-list <access-list-name> permit <network/mask> [exact-match]
 access-list <access-list-name> deny <network/mask> [exact-match]
+
+!!! Per definire delle community:
+bgp community-list standard <community-list-name> permit <num:num>

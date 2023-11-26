@@ -22,13 +22,13 @@ Una serie di comandi BGP utili con descrizione
 
 - per creare dei prefissi:
     ### ATTENTO che i prefissi fanno match solo con la rete specifica! se metti /16 non accetta la stessa rete /24 o /8 !!!!!
-    ip prefix-list <PREFIX-NAME> <permit/deny> <NetworkIP/MASK>
-    ip prefix-list <PREFIX-NAME> <permit/deny> any ##############(IL DENY ANY E' IMPLICITO PER OGNI PREFIX)##############
+    ip prefix-list <PREFIX-NAME> <permit|deny> <NetworkIP/MASK>
+    ip prefix-list <PREFIX-NAME> <permit|deny> any ##############(IL DENY ANY E' IMPLICITO PER OGNI PREFIX)##############
 
 -per creare delle route-map:
     ### se metti deny ignora la route-map (infatti alla fine c'è sempre
     ### un deny tutto implicito che leva le reti non specificate)
-    route-map <ROUTE-MAP-NAME> <permit/deny> <priority>
+    route-map <ROUTE-MAP-NAME> <permit|deny> <priority>
         match <condition> (es. ip address <access-list>)
         set <action> (tipo set metric <NUM> o set local-preference <NUM>)
     ### una access-list è simile a una prefix-list che metti nei match delle route-maps
