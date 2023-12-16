@@ -1,0 +1,8 @@
+# se vuoi rotte statiche
+## ip route add <NetworkIP/MASK> via <RouterIP> dev eth<num>
+
+ip a add 2.1.0.3/24 dev eth0
+ip a add 2.0.0.3/24 dev eth1
+ip a add 2.2.0.3/24 dev eth2
+
+systemctl start frr

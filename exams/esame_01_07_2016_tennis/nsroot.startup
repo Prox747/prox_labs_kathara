@@ -1,0 +1,7 @@
+# se vuoi rotte statiche
+## ip route add <NetworkIP/MASK> via <RouterIP> dev eth<num>
+
+ip a add 20.3.0.2/24 dev eth0
+ip route add default via 20.3.0.4 dev eth0
+
+systemctl start named

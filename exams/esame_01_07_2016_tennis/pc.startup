@@ -1,6 +1,5 @@
 # se vuoi rotte statiche
 ## ip route add <NetworkIP/MASK> via <RouterIP> dev eth<num>
 
-ip a add <RouterIP/MASK> dev eth<num>
-
-systemctl start apache2
+ip a add 10.0.0.2/24 dev eth0
+ip route add default via 10.0.0.1 dev eth0
