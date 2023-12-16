@@ -1,0 +1,77 @@
+RESOURCE RECORD FORMAT:
+<domain> <class> <type> <rdata>
+
+- domain: owner del record.
+- class: di solito è IN (Internet system), può essere HS (hesiod) o CH (chaos).
+- type: è il tipo del record i principali sono:
+                - A : address dell'host
+                - AAAA : address host ipv6
+                - CNAME : nome canonico dell'alias
+                - MX : mail exchange per il dominio
+                - NS : name server autorità per il dominio
+                - SOA : identifica l'inizio di una zona autorità
+- rdata: record data (dipende dal type)
+
+
+ESEMPIO DI RESOURCE RECORD: (i commenti sono preceduti da un ;)
+____________________________db.uniroma3.it________________________________
+$TTL   60000  ; time to live (in secondi)
+
+; Record Start Of Authority (SOA)
+; AUTHORITY SERVER: dnsuni.uniroma3.it. è il server autorità per questa zona 
+; OWNER MAIL: root.dnsuni.uniroma3.it. è la mail dell'owner (root@dnsuni.uniroma3.it)
+; FULLY QUALIFIED NAMES: è importante stare attenti ai nomi di domini "fully qualified" (cioè che finiscono con .), se non terminano con . sono 
+;                        relativi all'origin (ovvero il nome in "zone" nella configurazione del server)
+; la @ indica un record per l'origin corrente, in questo caso uniroma3.it
+
+@                       IN      SOA     dnsuni.uniroma3.it.    root.dnsuni.uniroma3.it. (
+                            2006031201 ; serial
+                            28800 ; refresh
+                            14400 ; retry
+                            3600000 ; expire
+                            0 ; negative cache ttl
+                            )
+
+; il Name Server autorità per questa zona è dnsuni.uniroma3.it. e si trova all'indirizzo <dnsuni-ip>
+@                       IN      NS      dnsuni.uniroma3.it.
+dnsuni.uniroma3.it.     IN      A       <dnsuni-ip>
+
+localuni.uniroma3.it.	IN	    A	    <localuni-ip>
+pc1.uniroma3.it.        IN      A       <pc1-ip>
+__________________________________________________________________________
+
+
+____________________________named.conf dnsuni_____________________________
+include "/etc/bind/named.conf.options"; <----- include configurazioni aggiuntive
+
+zone "." {
+    type hint;
+    file "/etc/bind/db.root"; <----- dove trovare le informazioni per in name server root
+};
+
+zone "uniroma3.it" {    <----- Questa è l'origin per db.uniroma3.it
+    type master;
+    file "/etc/bind/db.it.uniroma3"; <----- dove trovare le informazioni per i nomi di questa zona
+};
+__________________________________________________________________________
+
+
+
+________________________________db.it dnsit_______________________________
+$TTL   60000
+@               IN      SOA     dnsit.it.    root.dnsit.it. (
+                        2006031201 ; serial
+                        28800 ; refresh
+                        14400 ; retry
+                        3600000 ; expire
+                        0 ; negative cache ttl
+                        )
+
+; NS autorità per it
+@                       IN      NS      dnsit.it. 
+dnsit.it.               IN      A       <dnsit-ip>
+
+; NS autorità per uniroma3(.it)
+uniroma3.it.            IN      NS      dnsuni.uniroma3.it.
+dnsuni.uniroma3.it.     IN      A       <dnsuni-ip>
+__________________________________________________________________________
