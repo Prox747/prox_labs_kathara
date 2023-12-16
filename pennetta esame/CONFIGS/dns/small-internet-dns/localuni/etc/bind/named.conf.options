@@ -1,5 +1,5 @@
 options {
     directory "/var/cache/bind";
-    allow-recursion { <NETWORK/MASK>; };
+    allow-recursion { <NETWORK-NS-of-your-LAN/MASK>; };
     dnssec-validation no;
 };
