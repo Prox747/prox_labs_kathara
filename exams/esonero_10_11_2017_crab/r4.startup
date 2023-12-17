@@ -1,0 +1,10 @@
+# se vuoi rotte statiche
+## ip route add <NetworkIP/MASK> via <RouterIP> dev eth<num>
+
+ip a add 10.0.0.10/30 dev eth0
+ip a add 30.0.0.1/24 dev eth1
+ip a add 10.0.0.13/30 dev eth2
+
+ip route add 20.0.0.0/24 via 10.0.0.9 dev eth0
+ip route add 10.0.0.0/30 via 10.0.0.9 dev eth0
+ip route add 10.0.0.4/30 via 10.0.0.9 dev eth0
