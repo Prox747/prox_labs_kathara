@@ -77,6 +77,24 @@ dnsuni.uniroma3.it.     IN      A       <dnsuni-ip>
 __________________________________________________________________________
 
 
+
+______________________________pc resolv.conf______________________________
+nameserver <ns-local-ip>   <----- ip del resolver locale
+search <search-domain>     <----- Quando interroghiamo un nome di dominio, il risolutore combinerà il nome di dominio
+                                  con il dominio di ricerca per formare un nome di dominio completo. (facoltativo)
+__________________________________________________________________________
+
+
+_____________________local resolver named.conf.options____________________
+options {
+    directory "/var/cache/bind";
+    allow-recursion { <NETWORK/MASK>; };   <----- una lista di net/mask consentite per le chiamate ricorsive del dns con
+                                                  la 0/0 si permette tutto.
+    dnssec-validation no;
+};
+__________________________________________________________________________
+
+
                                    ┌────────────┐
                                    │            │
                                    │     ""     │
