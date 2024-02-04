@@ -1,7 +1,5 @@
-# prox_labs_kathara
-Una repository per sincronizzare dei laboratori kathará in comodità :)
+# Kathara Labs
 
-Nella cartella "pennetta" si trovano vari file con dentro commenti per dare una mano alla configurazione iniziale dei protocolli.
-In questi file, i parametri dei comandi da mettere sono racchiusi in parentesi angolate
+This repository contains configurations and exercises for the course Internet and Data Centers (IDC) at Roma Tre University.
 
-ESEMPIO: <comando> parte_sempre_presente<parametro> 
+[Kathará](https://github.com/KatharaFramework) is a lightweight network emulation system based on Docker containers. It's used to test production networks in a sandbox environment, or developing new network protocols.
